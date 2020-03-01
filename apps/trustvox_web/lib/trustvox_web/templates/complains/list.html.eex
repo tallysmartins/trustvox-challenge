@@ -1,0 +1,9 @@
+<section class="phx-hero">
+  <h1><%= gettext "List of all trusted complains" %></h1>
+</section>
+
+<section class="row">
+  <article class="column">
+    Nop
+  </article>
+</section>
