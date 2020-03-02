@@ -17,4 +17,7 @@ defmodule TrustvoxWeb.ComplainsController do
     changeset = Complain.changeset(%Complain{}, %{})
     render(conn, "new.html", changeset: changeset)
   end
+
+  def stats(conn, params) do
+  end
 end

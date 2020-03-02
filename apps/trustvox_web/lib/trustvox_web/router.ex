@@ -19,6 +19,7 @@ defmodule TrustvoxWeb.Router do
     get "/", PageController, :index
 
     resources "/complains", ComplainsController
+    get "/complains/stats", ComplainsController, :stats
   end
 
   # Other scopes may use custom stacks.
