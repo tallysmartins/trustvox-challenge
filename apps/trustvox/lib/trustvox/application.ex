@@ -7,7 +7,7 @@ defmodule Trustvox.Application do
 
   def start(_type, _args) do
     children = [
-      # Trustvox.Repo
+      Trustvox.Repo
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Trustvox.Supervisor)
