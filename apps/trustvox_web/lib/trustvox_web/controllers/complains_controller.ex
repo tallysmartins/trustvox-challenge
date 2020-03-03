@@ -1,6 +1,6 @@
 defmodule TrustvoxWeb.ComplainsController do
   use TrustvoxWeb, :controller
-  alias Trustvox.Complains.{Complains, Complain}
+  alias Trustvox.Complains.{Complain}
   alias Trustvox.Repo
 
   def index(conn, _params) do
@@ -9,15 +9,16 @@ defmodule TrustvoxWeb.ComplainsController do
     render(
       conn,
       "list.html",
-      complains: complains,
+      complains: complains
     )
   end
 
-  def new(conn, params) do
+  def new(conn, _params) do
     changeset = Complain.changeset(%Complain{}, %{})
     render(conn, "new.html", changeset: changeset)
   end
 
-  def stats(conn, params) do
+  def stats(conn, _params) do
+    render(conn, "stats.html")
   end
 end
