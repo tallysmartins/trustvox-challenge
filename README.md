@@ -1,5 +1,7 @@
 # Trustvox.Umbrella
 
+[![Travis Build Status](https://img.shields.io/travis/tallysmartins/trustvox-challenge.svg)](https://travis-ci.org/tallysmartins/trustvox-challenge)
+
 This is the hiring challenge from TrustVox. [Here are the instructions](instructions.md)
 
 ## Running locally
