@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  postgres:
+    container_name: trustvox-pg
+    image: 'postgres:9.5'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+
