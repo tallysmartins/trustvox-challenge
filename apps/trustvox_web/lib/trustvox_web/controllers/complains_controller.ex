@@ -23,7 +23,7 @@ defmodule TrustvoxWeb.ComplainsController do
     |> Complain.changeset(params)
     |> Repo.insert()
     |> case do
-      {:ok, complain} ->
+      {:ok, _complain} ->
         conn
         |> put_flash(:info, "Complain created successfully.")
         |> redirect(to: Routes.complains_path(conn, :index))
