@@ -6,8 +6,7 @@ defmodule Trustvox.Complains.Complain do
   schema "complains" do
     field :title, :string
     field :description, :string
-    field :locale, :string
-    field :company, :string
+    field :locale, :map
 
     timestamps(type: :utc_datetime)
   end
@@ -16,13 +15,10 @@ defmodule Trustvox.Complains.Complain do
     :title,
     :description,
     :locale,
-    :company,
   ]
 
-  @required_fields @fields -- [:locale, :company]
   def changeset(%Complain{} = complain, attrs) do
     complain
     |> cast(attrs, @fields)
-    |> validate_required(@required_fields)
   end
 end
