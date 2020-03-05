@@ -1,9 +1,16 @@
 <section class="phx-hero">
-  <h1><%= gettext "List of all trusted complains" %></h1>
+  <h1><%= gettext "List of complains" %></h1>
 </section>
 
 <section class="row">
   <article class="column">
-    Nop
+    <div>
+    <%= for complain <- @complains do %>
+      <div class="complain" style="">
+        <h3><%= complain.title %></h3>
+        <p style="padding-left: 1em;"><%= complain.description %></p>
+      </div>
+    <% end %>
+    </div>
   </article>
 </section>

@@ -18,6 +18,22 @@ defmodule TrustvoxWeb.ComplainsController do
     render(conn, "new.html", changeset: changeset)
   end
 
+  def create(conn, %{"complain" => params}) do
+    %Complain{}
+    |> Complain.changeset(params)
+    |> Repo.insert()
+    |> case do
+      {:ok, complain} ->
+        conn
+        |> put_flash(:info, "Complain created successfully.")
+        |> redirect(to: Routes.complains_path(conn, :index))
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, "Complain not created.")
+        |> render(conn, "new.html", changeset: changeset)
+    end
+  end
+
   def stats(conn, _params) do
     render(conn, "stats.html")
   end
