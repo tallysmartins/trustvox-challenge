@@ -8,6 +8,8 @@ defmodule Trustvox.Complains.Complain do
     field :description, :string
     field :locale, :map
 
+    belongs_to :subsidiary, Trustvox.Company.Subsidiary
+
     timestamps(type: :utc_datetime)
   end
 
