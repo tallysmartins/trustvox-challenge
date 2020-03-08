@@ -13,13 +13,13 @@ defmodule TrustvoxWeb.ComplainsController do
     )
   end
 
-  def new(conn, %{"company_id" => id} = params) do
+  def new(conn, %{"company_id" => id} = _params) do
     company = Repo.one(Company, id: id)
     changeset = Company.changeset(%Company{}, %{})
     render(conn, "new.html", changeset: changeset, company: company)
   end
 
-  def new(conn, params) do
+  def new(conn, _params) do
     conn
     |> redirect(to: Routes.companies_path(conn, :search))
   end

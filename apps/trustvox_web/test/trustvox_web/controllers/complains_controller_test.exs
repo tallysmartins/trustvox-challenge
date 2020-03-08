@@ -6,11 +6,10 @@ defmodule TrustvoxWeb.ComplainsControllerTest do
   @complain_params %{title: "Broken", description: "Not working"}
 
   describe "GET /complains/new" do
-    test "display complain input fields", %{conn: conn} do
+    test "redirect to search company page", %{conn: conn} do
       conn = get(conn, "/complains/new")
-      assert html_response(conn, 200) =~ "Post new complain"
-      assert html_response(conn, 200) =~ "Title"
-      assert html_response(conn, 200) =~ "Description"
+
+      assert redirected_to(conn) =~ "/search/companies"
     end
   end
 

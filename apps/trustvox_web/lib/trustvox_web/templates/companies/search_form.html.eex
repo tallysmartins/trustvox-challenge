@@ -5,7 +5,7 @@
 <section class="row">
   <article class="column">
 
-    <%= form_for :search, Routes.companies_path(@conn, :search), fn f -> %>
+    <%= form_for :search, Routes.companies_path(@conn, :search), fn _f -> %>
       <div class="form-group row">
         <div class="column center">
           <%= text_input :search, :query, class: "form-control" %>

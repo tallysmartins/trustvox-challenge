@@ -36,11 +36,11 @@ defmodule Trustvox.Company do
     |> cast(attrs, [:city, :state])
   end
 
-  def find_by_name(query) do
+  def find_by_name(_query) do
     Repo.all(Company)
   end
 
-  def find_last_complained(limit \\ 10) do
+  def find_last_complained(_limit \\ 10) do
     Repo.all(Company)
   end
 end
