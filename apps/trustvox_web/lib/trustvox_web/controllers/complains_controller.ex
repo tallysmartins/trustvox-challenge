@@ -1,7 +1,7 @@
 defmodule TrustvoxWeb.ComplainsController do
   use TrustvoxWeb, :controller
   alias Trustvox.Complains.{Complain}
-  alias Trustvox.Repo
+  alias Trustvox.{Company, Repo}
 
   def index(conn, _params) do
     # TODO paginate complains
@@ -13,9 +13,15 @@ defmodule TrustvoxWeb.ComplainsController do
     )
   end
 
-  def new(conn, _params) do
-    changeset = Complain.changeset(%Complain{}, %{})
-    render(conn, "new.html", changeset: changeset)
+  def new(conn, %{"company_id" => id} = params) do
+    company = Repo.one(Company, id: id)
+    changeset = Company.changeset(%Company{}, %{})
+    render(conn, "new.html", changeset: changeset, company: company)
+  end
+
+  def new(conn, params) do
+    conn
+    |> redirect(to: Routes.companies_path(conn, :search))
   end
 
   def create(conn, %{"complain" => params}) do
