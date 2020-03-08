@@ -13,7 +13,7 @@ defmodule TrustvoxWeb.ComplainsControllerTest do
     end
   end
 
-  describe "POST /complains/create" do
+  describe "POST /complains" do
     test "create complain when given correct params", %{conn: conn} do
       assert_difference(Complain, 1) do
         conn = post(conn, "/complains", %{complain: @complain_params})
@@ -27,7 +27,7 @@ defmodule TrustvoxWeb.ComplainsControllerTest do
     end
   end
 
-  describe "GET /complains/" do
+  describe "GET /complains" do
     test "display complains attributes", %{conn: conn} do
       {:ok, complain} = create_complain()
       {:ok, another_complain} = create_complain(%{@complain_params | title: "new title"})
