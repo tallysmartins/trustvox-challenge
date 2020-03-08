@@ -2,6 +2,7 @@
 defmodule Trustvox.Company do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
   alias Trustvox.{Company, Company.Subsidiary, Repo}
 
   schema "companies" do
@@ -13,34 +14,41 @@ defmodule Trustvox.Company do
     timestamps(type: :utc_datetime)
   end
 
-
   defmodule Subsidiary do
     use Ecto.Schema
 
-    schema "subsidiary" do
+    schema "subsidiaries" do
       field :city, :string
       field :state, :string
 
       has_many :complains, Trustvox.Complains.Complain
       belongs_to :company, Company
+
+      timestamps(type: :utc_datetime)
     end
   end
 
   def changeset(%Company{} = company, attrs) do
     company
     |> cast(attrs, [:name, :website])
+    |> validate_required([:name])
   end
 
   def changeset(%Subsidiary{} = subsidiary, attrs) do
     subsidiary
-    |> cast(attrs, [:city, :state])
+    |> cast(attrs, [:city, :state, :company_id])
   end
 
-  def find_by_name(_query) do
-    Repo.all(Company)
+  # FIXME return fuzzy query, not exact one
+  def fetch_by_name_like(name) do
+    from(c in Company, where: c.name ==  ^name)
+    |> Repo.all()
   end
 
-  def find_last_complained(_limit \\ 10) do
-    Repo.all(Company)
+  # FIXME query last complained not only last ones
+  def fetch_last_complained(limit \\ 10) do
+    Company
+    |> limit(^limit)
+    |> Repo.all()
   end
 end

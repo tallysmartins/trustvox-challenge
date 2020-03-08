@@ -13,7 +13,6 @@ defmodule Trustvox.Repo.Migrations.AddsCompanyAndSubsidiaryTables do
       add :city, :string
       add :state, :string
       add :company_id, references(:companies), null: false
-      add :complains_id, references(:complains), null: false
 
       timestamps()
     end
