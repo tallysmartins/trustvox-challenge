@@ -22,6 +22,7 @@ defmodule TrustvoxWeb.CompaniesControllerTest do
   end
 
   describe "POST /companies" do
+    @tag :wip
     test "create company given correct fields and single subsidiary", %{conn: conn} do
       params = %{
         company: @company_params,
@@ -35,6 +36,7 @@ defmodule TrustvoxWeb.CompaniesControllerTest do
       end
     end
 
+    @tag :wip
     test "create company given correct fields and multiple subsidiaries", %{conn: conn} do
       params = %{
         company: @company_params,
@@ -48,20 +50,22 @@ defmodule TrustvoxWeb.CompaniesControllerTest do
       end
     end
 
+    @tag :wip
     test "return friendly error if name field is empty", %{conn: conn} do
       params = %{
         company: %{@company_params | name: ""}, 
-        subsidiaries: [@subsidiary_params]
+        subsidiary: @subsidiary_params
       }
 
       conn = post(conn, "/companies", params)
       assert get_flash(conn, :error) =~ "Company not created"
     end
 
+    @tag :wip
     test "do not create company if subsidiary is invalid", %{conn: conn} do
       params = %{
         company: @company_params, 
-        subsidiaries: [%{}]
+        subsidiary: @subsidiary_params
       }
 
       assert_difference(Company, 0) do

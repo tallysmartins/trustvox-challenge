@@ -15,6 +15,9 @@ before_script:
   - mix deps.compile
   - mix compile --warnings-as-errors
 
+script:
+	- mix test --exclude wip
+
 cache:
   directories:
     - _build

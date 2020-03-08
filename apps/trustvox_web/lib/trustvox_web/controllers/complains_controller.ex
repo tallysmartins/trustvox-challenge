@@ -14,7 +14,7 @@ defmodule TrustvoxWeb.ComplainsController do
   end
 
   # FIXME fetch correct company and also list subsidiaries
-  def new(conn, %{"company_id" => id} = _params) do
+  def new(conn, %{"company_id" => _id} = _params) do
     company = Repo.all(Company) |> hd
     changeset = Complain.changeset(%Complain{}, %{})
     render(conn, "new.html", changeset: changeset, company: company)

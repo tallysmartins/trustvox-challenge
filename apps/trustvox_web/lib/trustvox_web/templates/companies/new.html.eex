@@ -16,8 +16,8 @@
   </div>
 
   <div class="form-group">
-    city: <input type="text" name="subsidiaries[city][]">
-    state: <input type="text" name="subsidiaries[state][]">
+    City: <input type="text" name="subsidiaries[city][]">
+    State: <input type="text" name="subsidiaries[state][]">
   </div>
 
   <div class="form-group">

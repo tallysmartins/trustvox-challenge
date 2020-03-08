@@ -19,7 +19,7 @@ defmodule TrustvoxWeb.CompaniesController do
   end
 
   # FIXME allow to create multiple subsidiaries
-  def create(conn, %{"company" => company, "subsidiary" => subsidiary}) do
+  def create(conn, %{"company" => company, "subsidiary" => _subsidiary}) do
     %Company{}
     |> Company.changeset(company)
     |> Repo.insert()
