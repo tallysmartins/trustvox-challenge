@@ -16,6 +16,11 @@
   </div>
 
   <div class="form-group">
+    city: <input type="text" name="subsidiaries[city][]">
+    state: <input type="text" name="subsidiaries[state][]">
+  </div>
+
+  <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

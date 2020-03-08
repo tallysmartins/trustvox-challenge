@@ -6,7 +6,8 @@
   <article class="column">
     <%= for company <- @companies do %>
       <div class="company" style="">
-        <h3><%= company.name %></h3>
+        <p>NAME: <%= link company.name, to: back_to_new(company) %></p>
+        <p style="border-bottom: 1px solid;">WEBSITE: <%= company.website %></p>
       </div>
     <% end %>
   </article>

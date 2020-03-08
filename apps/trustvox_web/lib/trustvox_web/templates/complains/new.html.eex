@@ -1,8 +1,14 @@
 <section class="phx-hero">
-  <h1><%= gettext "Post new complain" %></h1>
+  <h1><%= gettext "Post new complain :)" %></h1>
+  <div class="form-group company">
+    <p>NAME: <%= @company.name %></p>
+    <p style="border-bottom: 1px solid;">WEBSITE: <%= @company.website %></p>
+  </div>
 </section>
 
 <%= form_for @changeset, Routes.complains_path(@conn, :create), fn f -> %>
+
+
   <div class="form-group">
     <%= label f, :title, class: "control-label" %>
     <%= text_input f, :title, class: "form-control" %>

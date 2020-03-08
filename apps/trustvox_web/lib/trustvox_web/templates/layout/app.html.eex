@@ -11,6 +11,9 @@
   <body>
     <header>
       <section class="container">
+        <%= link "Github", to: "http://github.com/tallysmartins/trustvox-web" %>
+        <%= link "Home", to: "/" %>
+        <%= link "Trustvox Official", to: "https://site.trustvox.com.br" %>
       </section>
     </header>
     <main role="main" class="container">
