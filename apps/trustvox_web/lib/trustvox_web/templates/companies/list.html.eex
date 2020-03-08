@@ -1,0 +1,13 @@
+<section class="phx-hero">
+  <h1><%= gettext "List of companies" %></h1>
+</section>
+
+<section class="row">
+  <article class="column">
+    <%= for company <- @companies do %>
+      <div class="company" style="">
+        <h3><%= company.name %></h3>
+      </div>
+    <% end %>
+  </article>
+</section>

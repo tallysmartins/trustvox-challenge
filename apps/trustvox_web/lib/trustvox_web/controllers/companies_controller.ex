@@ -33,4 +33,16 @@ defmodule TrustvoxWeb.CompaniesController do
         |> render(conn, "new.html", changeset: changeset)
     end
   end
+
+  # redirect to :back_to, otherwise go to show company page
+  def search(conn, params) do
+    case get_in(params, ["search", "query"]) do
+      nil ->
+        companies = Company.find_last_complained()
+        render(conn, "search_form.html", companies: companies)
+      query ->
+        companies = Company.find_by_name(query)
+        render(conn, "list.html", companies: companies)
+    end
+  end
 end

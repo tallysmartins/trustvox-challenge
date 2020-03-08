@@ -2,9 +2,9 @@
 defmodule Trustvox.Company do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Trustvox.{Company, Company.Subsidiary}
+  alias Trustvox.{Company, Company.Subsidiary, Repo}
 
-  schema "company" do
+  schema "companies" do
     field :name, :string
     field :website, :string
 
@@ -34,5 +34,13 @@ defmodule Trustvox.Company do
   def changeset(%Subsidiary{} = subsidiary, attrs) do
     subsidiary
     |> cast(attrs, [:city, :state])
+  end
+
+  def find_by_name(query) do
+    Repo.all(Company)
+  end
+
+  def find_last_complained(limit \\ 10) do
+    Repo.all(Company)
   end
 end
