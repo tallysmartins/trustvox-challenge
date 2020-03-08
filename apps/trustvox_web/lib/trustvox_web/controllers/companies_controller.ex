@@ -18,9 +18,10 @@ defmodule TrustvoxWeb.CompaniesController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"company" => params}) do
+  # FIXME allow to create multiple subsidiaries
+  def create(conn, %{"company" => company, "subsidiary" => subsidiary}) do
     %Company{}
-    |> Company.changeset(params)
+    |> Company.changeset(company)
     |> Repo.insert()
     |> case do
       {:ok, _company} ->
@@ -30,18 +31,18 @@ defmodule TrustvoxWeb.CompaniesController do
       {:error, changeset} ->
         conn
         |> put_flash(:error, "Company not created.")
-        |> render(conn, "new.html", changeset: changeset)
+        |> render("new.html", changeset: changeset)
     end
   end
 
-  # redirect to :back_to, otherwise go to show company page
+  # FIXME redirect to :back_to, otherwise go to show company page
   def search(conn, params) do
     case get_in(params, ["search", "query"]) do
       nil ->
-        companies = Company.find_last_complained()
+        companies = Company.fetch_last_complained()
         render(conn, "search_form.html", companies: companies)
       query ->
-        companies = Company.find_by_name(query)
+        companies = Company.fetch_by_name_like(query)
         render(conn, "list.html", companies: companies)
     end
   end
