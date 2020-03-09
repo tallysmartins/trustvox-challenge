@@ -2,10 +2,10 @@ use Mix.Config
 
 # Configure your database
 config :trustvox, Trustvox.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "trustvox_test",
-  hostname: "localhost",
+  username: System.get_env("PGUSER", "postgres"),
+  password: System.get_env("PGPASSWORD", "postgres"),
+  database: System.get_env("PGDATABASE", "trustvox_test"),
+  hostname: System.get_env("PGHOST", "localhost"),
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,

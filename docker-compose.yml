@@ -10,3 +10,14 @@ services:
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'postgres'
 
+  trustvox:
+    container_name: trustvox
+    build: .
+    ports:
+      - 4000:4000
+    depends_on:
+      - postgres
+    environment:
+      PGUSER: 'postgres'
+      PGPASSWORD: 'postgres'
+      PGHOST: 'postgres'
