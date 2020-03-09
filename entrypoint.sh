@@ -1,6 +1,14 @@
 #!/bin/bash
 # Docker entrypoint script.
 
+#echo "-------------------------"
+#echo "##### Mix commands"
+#echo "-------------------------"
+#
+#mix local.rebar --force
+#mix local.hex --force
+#mix deps.get
+
 echo "-------------------------"
 echo "##### Database commands"
 echo "-------------------------"
