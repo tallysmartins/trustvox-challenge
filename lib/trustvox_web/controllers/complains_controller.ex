@@ -1,6 +1,6 @@
 defmodule TrustvoxWeb.ComplainsController do
   use TrustvoxWeb, :controller
-  alias Trustvox.Complains.Complain
+  alias Trustvox.Complains.{Complains, Complain}
   alias Trustvox.Companies.Company
   alias Trustvox.Repo
 
@@ -28,9 +28,7 @@ defmodule TrustvoxWeb.ComplainsController do
 
   # FIXME create complain associated with subsidiary
   def create(conn, %{"complain" => params}) do
-    %Complain{}
-    |> Complain.changeset(params)
-    |> Repo.insert()
+    Complains.create_complain(params)
     |> case do
       {:ok, _complain} ->
         conn

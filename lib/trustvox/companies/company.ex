@@ -26,18 +26,21 @@ defmodule Trustvox.Companies.Company do
 
       timestamps(type: :utc_datetime)
     end
+
+    def changeset(%Subsidiary{} = subsidiary, attrs) do
+      subsidiary
+      |> cast(attrs, [:city, :state])
+      |> validate_required([:city, :state])
+    end
   end
 
   def changeset(%Company{} = company, attrs) do
     company
     |> cast(attrs, [:name, :website])
     |> validate_required([:name])
+    |> cast_assoc(:subsidiaries, required: true, with: &Subsidiary.changeset/2)
   end
 
-  def changeset(%Subsidiary{} = subsidiary, attrs) do
-    subsidiary
-    |> cast(attrs, [:city, :state, :company_id])
-  end
 
   # FIXME return fuzzy query, not exact one
   def fetch_by_name_like(name) do
