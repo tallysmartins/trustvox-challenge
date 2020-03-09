@@ -17,6 +17,12 @@ defmodule TrustvoxWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    resources "/complains", ComplainsController
+    resources "/companies", CompaniesController
+    get "/complains/stats", ComplainsController, :stats
+
+    match :*, "/search/companies", CompaniesController, :search
   end
 
   # Other scopes may use custom stacks.

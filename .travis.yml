@@ -1,0 +1,24 @@
+language: elixir
+sudo: false
+elixir:
+  - 1.9.1
+otp_release:
+  - 21.3
+
+addons:
+  postgresql: "9.5"
+
+env:
+  - MIX_ENV=test
+
+before_script:
+  - mix deps.compile
+  - mix compile --warnings-as-errors
+
+script:
+	- mix test --exclude wip
+
+cache:
+  directories:
+    - _build
+    - deps

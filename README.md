@@ -1,20 +1,47 @@
-# Trustvox
+# Trustvox.Umbrella
 
-To start your Phoenix server:
+[![Travis Build Status](https://api.travis-ci.com/tallysmartins/trustvox-challenge.svg?token=YYPB6r3MNBGxpDFgnYJL&branch=master)](https://travis-ci.org/tallysmartins/trustvox-challenge)
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+This is the hiring challenge from TrustVox. [Here are the instructions](instructions.md)
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Running locally
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+**Install environment dependencies**
 
-## Learn more
+You can use [asdf](https://github.com/asdf-vm/asdf) to install language dependencies.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+- elixir         1.9.1
+- erlang         21.3.8.7
+
+
+**Install packages**
+
+`$ mix deps.get`
+
+After installing dependencies ensure all tests are passing.
+
+`$ mix test`
+
+Now, to run the application `phx.server` and access `http://localhost:4000`
+
+
+## Deploy on Heroku
+
+The deploy is made based on docker containers.
+
+First createe your account.
+Create your app
+Install heroku cli
+  https://devcenter.heroku.com/articles/heroku-cli
+Set your app config to use container stack
+  https://devcenter.heroku.com/articles/build-docker-images-heroku-yml
+Push branch to heroku. It will build the docker image from the Dockerfile and .herokuconfig
+Set up phoenix build packs
+Set up environment variables
+	MIX_ENV
+	SECRET
+Acess your app URL
+
+A few gotchas:
+  Heroku dynos are limited in DB connections
+  Heroku 

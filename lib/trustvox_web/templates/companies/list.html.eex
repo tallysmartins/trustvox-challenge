@@ -1,0 +1,14 @@
+<section class="phx-hero">
+  <h1><%= gettext "List of companies" %></h1>
+</section>
+
+<section class="row">
+  <article class="column">
+    <%= for company <- @companies do %>
+      <div class="company" style="">
+        <p>NAME: <%= link company.name, to: back_to_new(company) %></p>
+        <p style="border-bottom: 1px solid;">WEBSITE: <%= company.website %></p>
+      </div>
+    <% end %>
+  </article>
+</section>
