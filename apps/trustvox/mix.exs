@@ -23,7 +23,7 @@ defmodule Trustvox.MixProject do
   def application do
     [
       mod: {Trustvox.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ssl]
     ]
   end
 
