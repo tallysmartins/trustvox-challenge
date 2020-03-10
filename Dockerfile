@@ -4,6 +4,7 @@ FROM elixir:latest
 RUN printenv
 
 RUN apt-get update \
+ && apt-get install -y postgresql-client \
  && curl -sL https://deb.nodesource.com/setup_10.x | bash \
  && apt-get install -y apt-utils \
  && apt-get install -y nodejs \
@@ -24,5 +25,4 @@ RUN mix deps.get
 
 COPY . /app
 
-# Get project deps
 CMD ["./entrypoint.sh"]

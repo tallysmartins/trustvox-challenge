@@ -21,3 +21,4 @@ services:
       PGUSER: 'postgres'
       PGPASSWORD: 'postgres'
       PGHOST: 'postgres'
+      PGPORT: 5432
