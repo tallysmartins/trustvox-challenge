@@ -55,6 +55,18 @@ defmodule Companies.Companies do
                   state: ["can't be blank"]
               }]} = errors_on(changeset)
     end
+
+    test "do not insert company if invalid state for subsidiary is given" do
+      subsidiaries = [%{city: "Sao Paulo", state: "wut"}]
+      attrs = %{name: "trustvox", website: "trustvox.com", subsidiaries: subsidiaries}
+      assert_difference(Company, 0) do
+        assert {:error, changeset} = Companies.create_company(attrs)
+      end
+
+      assert %{subsidiaries: [%{
+                  state: ["invalid state"]
+              }]} = errors_on(changeset)
+    end
   end
 
   describe "fetch_top_complained/1" do

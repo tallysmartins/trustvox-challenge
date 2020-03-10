@@ -28,10 +28,26 @@ defmodule Trustvox.Companies.Company do
       timestamps(type: :utc_datetime)
     end
 
+
     def changeset(%Subsidiary{} = subsidiary, attrs) do
       subsidiary
       |> cast(attrs, [:city, :state])
       |> validate_required([:city, :state])
+      |> validate_state(:state)
+    end
+
+    def validate_state(changeset, field, options \\ []) do
+      validate_change(changeset, field, fn _, state ->
+        case state in valid_states() do
+          true -> []
+          false -> [{field, options[:message] || "invalid state"}]
+        end
+      end)
+    end
+
+    def valid_states() do
+      ~w(AC AL AP AM BA CE DF ES GO MA MT MS MG PA
+            PB PR PE PI RJ RN RS RO RR SC SP SE TO)
     end
   end
 
@@ -40,6 +56,11 @@ defmodule Trustvox.Companies.Company do
     |> cast(attrs, [:name, :website])
     |> validate_required([:name])
     |> cast_assoc(:subsidiaries, required: true, with: &Subsidiary.changeset/2)
+  end
+
+  def create_changeset() do
+    %Company{subsidiaries: [%Subsidiary{state: "AC", city: ""}]}
+    |> cast(%{}, [])
   end
 
 
@@ -55,4 +76,5 @@ defmodule Trustvox.Companies.Company do
     |> limit(^limit)
     |> Repo.all()
   end
+
 end

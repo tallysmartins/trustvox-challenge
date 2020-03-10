@@ -1,7 +1,7 @@
 defmodule TrustvoxWeb.ComplainsController do
   use TrustvoxWeb, :controller
   alias Trustvox.Complains.{Complains, Complain}
-  alias Trustvox.Companies.{Companies, Company}
+  alias Trustvox.Companies.Companies
   alias Trustvox.Repo
 
   # FIXME paginate complains

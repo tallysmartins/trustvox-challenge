@@ -1,6 +1,6 @@
 defmodule Trustvox.Companies.Companies do
   import Ecto.Query
-  alias Trustvox.Companies.{Company, Company.Subsidiary}
+  alias Trustvox.Companies.Company
   alias Trustvox.Repo
 
   def create_company(attrs) do
