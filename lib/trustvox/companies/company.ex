@@ -8,6 +8,7 @@ defmodule Trustvox.Companies.Company do
   schema "companies" do
     field :name, :string
     field :website, :string
+    field :complains_count, :integer
 
     has_many :subsidiaries, Subsidiary
 
