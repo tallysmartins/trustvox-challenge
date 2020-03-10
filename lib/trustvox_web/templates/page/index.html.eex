@@ -13,7 +13,7 @@
         <li> <%= complain.title %> </li>
       <% end %>
     </ul>
-    <%= link("Read all complains...", to: Routes.complains_path(@conn, :index)) %>
+    <%= link("See more complains...", to: Routes.complains_path(@conn, :index)) %>
   </article>
   <article class="column">
     <h2>Top complained companies</h2>

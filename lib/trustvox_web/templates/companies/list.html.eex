@@ -1,5 +1,6 @@
 <section class="phx-hero">
   <h1><%= gettext "List of companies" %></h1>
+  <p> Dint find? <%= link "Click here", to: Routes.companies_path(@conn, :new) %> to register it!
 </section>
 
 <section class="row">

@@ -15,23 +15,43 @@
     <%= error_tag f, :website %>
   </div>
 
-  <%= inputs_for f, :subsidiaries, fn fp -> %>
-    <div class="row">
-      <div class="sm">
-        <%= label fp, :state, class: "control-label" %>
-        <%= select fp, :state, valid_states() %>
-        <%= error_tag fp, :state %>
-      </div>
+  <h2> Select multiple locations where the Company is based </h2>
+  <div id="div-subsidiaries">
+    <%= inputs_for f, :subsidiaries, fn fp -> %>
+      <div class="row subsidiary" id="subsidiary">
+        <div class="sm">
+          <%= label fp, :state, class: "control-label" %>
+          <%= select fp, :state, valid_states() %>
+          <%= error_tag fp, :state %>
+                </div>
 
-      <div class="form-group column">
-        <%= label fp, :city, class: "control-label" %>
-        <%= text_input fp, :city, class: "form-control" %>
-        <%= error_tag fp, :city %>
+        <div class="form-group column">
+          <%= label fp, :city, class: "control-label" %>
+          <%= text_input fp, :city, placeholder: "Type a city, e.g. São Paulo", class: "form-control" %>
+          <%= error_tag fp, :city %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+
+    <%= inputs_for f, :subsidiaries, fn fp -> %>
+      <div class="row subsidiary" id="subsidiary">
+        <div class="sm">
+          <%= label fp, :state, class: "control-label" %>
+          <%= select fp, :state, valid_states(), name: "company[subsidiaries][1][state]" %>
+          <%= error_tag fp, :state %>
+        </div>
+
+        <div class="form-group column">
+          <%= label fp, :city, class: "control-label" %>
+          <%= text_input fp, :city, name: "company[subsidiaries][1][city]", class: "form-control" %>
+          <%= error_tag fp, :city %>
+        </div>
+      </div>
+    <% end %>
+  <div>
 
   <div class="form-group">
+    <button disabled id="locations-btn" style="background: green;">Add other location</button>
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
