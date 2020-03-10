@@ -1,0 +1,20 @@
+<section class="phx-hero">
+  <h1><%= gettext "Company Profile" %></h1>
+  <div class="form-group company">
+    <p><h3 style="text-align: left; border-top: 1px solid;"> Company: <%= @company.name %></h2></p>
+    <p style="text-align: left; ">Link: <%= link @company.website, to: @company.website %></p>
+    <p style="text-align: left; border-bottom: 1px solid;">Total Complains: <%= link @company.complains_count, to: "#" %></p>
+  </div>
+</section>
+
+<section class="row">
+  <article class="column">
+     <h2>Subsidiaries</h2>
+    <%= for subsidiary <- @company.subsidiaries do %>
+      <div class="subsidiary" style="border: outset;">
+        <h3>State: <%= link subsidiary.state, to: "#" %></h3>
+        <h3>City: <%= link subsidiary.city, to: "#" %></h3>
+      </div>
+    <% end %>
+  </article>
+</section>

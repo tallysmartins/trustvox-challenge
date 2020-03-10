@@ -13,6 +13,11 @@ defmodule TrustvoxWeb.CompaniesController do
     )
   end
 
+	def show(conn, %{"id" => id}) do
+		{:ok, company} = Companies.fetch_company(id)
+		render(conn, "show.html", company: company)
+	end
+
   def new(conn, _params) do
     changeset = Company.create_changeset()
     IO.inspect(changeset)

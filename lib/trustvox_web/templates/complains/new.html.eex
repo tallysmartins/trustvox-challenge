@@ -1,8 +1,11 @@
 <section class="phx-hero">
   <h1><%= gettext "Post new complain :)" %></h1>
   <div class="form-group company">
-    <p><h3 style="text-align: left; border-top: 1px solid;"> Company: <%= @company.name %></h2></p>
-    <p style="text-align: left; border-bottom: 1px solid;">Link: <%= link @company.website, to: @company.website %></p>
+    <p>
+      <h3 style="text-align: left; border-top: 1px solid;">
+        Company: <%= link @company.name, to: Routes.companies_path(@conn, :show, @company.id) %>
+      </h3></p>
+      <p style="text-align: left; border-bottom: 1px solid;">Link: <%= link @company.website, to: @company.website %></p>
   </div>
 </section>
 

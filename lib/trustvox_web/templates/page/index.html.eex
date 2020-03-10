@@ -19,9 +19,9 @@
     <h2>Top complained companies</h2>
     <ul>
       <%= for company <- @companies do %>
-        <li> <%= company.name %> </li>
+        <li> <%= link company.name, to: Routes.companies_path(@conn, :show, company.id) %> </li>
       <% end %>
     </ul>
-    <%= link("Check companies stats!", to: Routes.complains_path(@conn, :stats))  %>
+    <%= link("Check companies stats!", to: Routes.companies_path(@conn, :index))  %>
   </article>
 </section>
