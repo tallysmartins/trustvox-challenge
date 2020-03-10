@@ -51,7 +51,7 @@ defmodule TrustvoxWeb.CompaniesController do
   def search(conn, params) do
     case get_in(params, ["search", "query"]) do
       nil ->
-        companies = Company.fetch_last_complained()
+        companies = Companies.fetch_top_complained()
         render(conn, "search_form.html", companies: companies)
       query ->
         companies = Company.fetch_by_name_like(query)

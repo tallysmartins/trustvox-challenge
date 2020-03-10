@@ -17,11 +17,14 @@
     <% end %>
 
     <h2 style="text-align: center; text-decoration: underline;"> LAST COMPLAINED COMPANIES </h2>
-    <%= for company <- @companies do %>
-      <div class="company" style="">
-        <h3><%= company.name %></h3>
+    <div class="container">
+      <%= for company <- @companies do %>
+        <div class="company" style="align-items: center; display: flex;  margin: 10px; border: outset">
+          <h2 style="padding: 0.3em;"><%= link "+", to: Routes.complains_path(@conn, :new, company_id: company.id)  %></h2>
+          <h3><%= company.name %></h3> 
+        </div>
+      <% end %>
       </div>
-    <% end %>
     </div>
   </article>
 </section>

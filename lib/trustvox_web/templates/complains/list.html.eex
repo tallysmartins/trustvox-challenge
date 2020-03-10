@@ -6,8 +6,8 @@
   <article class="column">
     <div>
     <%= for complain <- @complains do %>
-      <div class="complain" style="">
-        <h3><%= complain.title %></h3>
+      <div class="complain" style="margin: 10px; border: outset">
+        <h3 style="padding-left: 0.3em;"><%= complain.title %></h3>
         <p style="padding-left: 1em;"><%= complain.description %></p>
       </div>
     <% end %>

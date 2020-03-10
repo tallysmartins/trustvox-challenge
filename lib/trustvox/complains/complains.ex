@@ -1,4 +1,6 @@
 defmodule Trustvox.Complains.Complains do
+  import Ecto.Query
+
   alias Trustvox.Complains.Complain
   alias Trustvox.Repo
 
@@ -14,7 +16,10 @@ defmodule Trustvox.Complains.Complains do
     |> create_complain()
   end
 
-  def list_complains() do
-    Repo.all(Complain)
+  def last_complains(limit \\ 100) when is_integer(limit) do
+    Complain
+    |> limit(^limit)
+    |> order_by(desc: :inserted_at)
+    |> Repo.all()
   end
 end

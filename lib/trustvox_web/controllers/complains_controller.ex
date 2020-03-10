@@ -6,7 +6,7 @@ defmodule TrustvoxWeb.ComplainsController do
 
   # FIXME paginate complains
   def index(conn, _params) do
-    complains = Repo.all(Complain)
+    complains = Complains.last_complains()
     render(
       conn,
       "list.html",
@@ -14,7 +14,6 @@ defmodule TrustvoxWeb.ComplainsController do
     )
   end
 
-  # FIXME fetch correct company and also list subsidiaries
   def new(conn, %{"company_id" => id}) do
     {:ok, company} = Companies.fetch_company(id)
     changeset = Complain.changeset(%Complain{}, %{})
@@ -26,7 +25,6 @@ defmodule TrustvoxWeb.ComplainsController do
     |> redirect(to: Routes.companies_path(conn, :search))
   end
 
-  # FIXME create complain associated with subsidiary
   def create(conn, %{"complain" => params}) do
     Complains.create_complain(params)
     |> case do

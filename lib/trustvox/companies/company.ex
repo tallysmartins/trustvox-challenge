@@ -69,12 +69,4 @@ defmodule Trustvox.Companies.Company do
     from(c in Company, where: c.name ==  ^name)
     |> Repo.all()
   end
-
-  # FIXME query last complained not only last ones
-  def fetch_last_complained(limit \\ 10) do
-    Company
-    |> limit(^limit)
-    |> Repo.all()
-  end
-
 end

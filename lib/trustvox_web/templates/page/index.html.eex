@@ -9,32 +9,18 @@
   <article class="column">
     <h2>Last Complains</h2>
     <ul>
-      <li>
-        Title 1
-        .....
-      </li>
-      <li>
-        Title 2
-        .....
-      </li>
-      <li>
-        Title 3
-      </li>
+      <%= for complain <- @complains do %>
+        <li> <%= complain.title %> </li>
+      <% end %>
     </ul>
     <%= link("Read all complains...", to: Routes.complains_path(@conn, :index)) %>
   </article>
   <article class="column">
     <h2>Top complained companies</h2>
     <ul>
-      <li>
-        Company 1 - City
-      </li>
-      <li>
-        Company 2 - City
-      </li>
-      <li>
-        Company 3 - City
-      </li>
+      <%= for company <- @companies do %>
+        <li> <%= company.name %> </li>
+      <% end %>
     </ul>
     <%= link("Check companies stats!", to: Routes.complains_path(@conn, :stats))  %>
   </article>
