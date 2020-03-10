@@ -14,7 +14,9 @@ defmodule Trustvox.Companies.Companies do
   end
 
   def fetch_company(id) do
-    Repo.fetch(where(Company, id: ^id))
+    where(Company, id: ^id)
+    |> preload(:subsidiaries)
+    |> Repo.fetch()
   end
 
   # FIXME return fuzzy query, not exact one

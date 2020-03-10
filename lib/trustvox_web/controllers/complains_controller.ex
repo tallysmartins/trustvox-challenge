@@ -1,7 +1,7 @@
 defmodule TrustvoxWeb.ComplainsController do
   use TrustvoxWeb, :controller
   alias Trustvox.Complains.{Complains, Complain}
-  alias Trustvox.Companies.Company
+  alias Trustvox.Companies.{Companies, Company}
   alias Trustvox.Repo
 
   # FIXME paginate complains
@@ -15,8 +15,8 @@ defmodule TrustvoxWeb.ComplainsController do
   end
 
   # FIXME fetch correct company and also list subsidiaries
-  def new(conn, %{"company_id" => _id} = _params) do
-    company = Repo.all(Company) |> hd
+  def new(conn, %{"company_id" => id}) do
+    {:ok, company} = Companies.fetch_company(id)
     changeset = Complain.changeset(%Complain{}, %{})
     render(conn, "new.html", changeset: changeset, company: company)
   end
