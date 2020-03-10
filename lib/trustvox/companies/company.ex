@@ -21,6 +21,7 @@ defmodule Trustvox.Companies.Company do
     schema "subsidiaries" do
       field :city, :string
       field :state, :string
+      field :complains_count, :integer
 
       has_many :complains, Trustvox.Complains.Complain
       belongs_to :company, Company

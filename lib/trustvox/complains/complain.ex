@@ -27,7 +27,19 @@ defmodule Trustvox.Complains.Complain do
     |> cast(attrs, @fields)
     |> validate_required([:title, :description])
     |> foreign_key_constraint(:subsidiary_id)
+    |> prepare_changes(&increment_subsidiary_complains_count/1)
     |> prepare_changes(&increment_company_complains_count/1)
+  end
+
+
+  defp increment_subsidiary_complains_count(%Ecto.Changeset{} = changeset) do
+    if subsidiary_id = get_change(changeset, :subsidiary_id) do
+      query =
+       from s in Subsidiary,
+         where: s.id == ^subsidiary_id
+      changeset.repo.update_all(query, inc: [complains_count: 1])
+    end
+    changeset
   end
 
   defp increment_company_complains_count(%Ecto.Changeset{} = changeset) do

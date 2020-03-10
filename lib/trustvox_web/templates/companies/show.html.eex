@@ -9,12 +9,26 @@
 
 <section class="row">
   <article class="column">
+    <h2>Complains by State</h2>
+    <%= for {state, counts} <- complains_by_state(@company.subsidiaries) do %>
+      <div class="subsidiary" style="border: inset;">
+        <h3>State: <%= link state, to: "#" %></h3>
+        <h3>Count: <%= link Enum.sum(counts), to: "#" %></h3>
+    </div>
+    <% end %>
+  </article>
+</section>
+
+<section class="row" style="margin-top: 2em;">
+  <article class="column">
      <h2>Subsidiaries</h2>
     <%= for subsidiary <- @company.subsidiaries do %>
       <div class="subsidiary" style="border: outset;">
         <h3>State: <%= link subsidiary.state, to: "#" %></h3>
         <h3>City: <%= link subsidiary.city, to: "#" %></h3>
+        <h3>Numer of Complains: <%= link subsidiary.complains_count, to: "#" %></h3>
       </div>
     <% end %>
   </article>
 </section>
+
